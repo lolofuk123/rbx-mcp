@@ -1,0 +1,45 @@
+{
+  "name": "rbx-mcp",
+  "version": "0.1.0",
+  "description": "Bridge that lets an AI agent execute Lua live inside Roblox Studio over MCP.",
+  "type": "module",
+  "bin": {
+    "rbx-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "bundle:plugin": "node scripts/bundle-plugin.mjs",
+    "build": "npm run bundle:plugin && tsc",
+    "dev": "tsx src/index.ts",
+    "dev-enqueue": "tsx src/dev-enqueue.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "roblox",
+    "roblox-studio",
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "lua",
+    "luau"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  }
+}
