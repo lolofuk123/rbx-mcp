@@ -25,6 +25,13 @@ All notable changes to this project are documented here. Format loosely follows
   result mapping, snippets) and a Studio command-bar harness for the plugin
   executor.
 
+### Changed
+
+- Plugin (v0.2.0): clearer status when HttpService is off ("HTTP service disabled
+  - enable it in Experience settings → Security → Allow HTTP Requests"); connects
+  automatically once it's enabled. Confirmed plugins **cannot** toggle HttpService
+  themselves in current Studio, so enabling it stays a one-time manual step.
+
 ### Verified
 
 - Studio spike: `loadstring` + `setfenv` capture + `xpcall` traceback all work in

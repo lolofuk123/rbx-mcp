@@ -207,13 +207,14 @@ Studio once** after the first server launch for the freshly-installed plugin to
 load. There's no way around this short of a Creator-Store install (ruled out —
 concept §10). After that first load the plugin persists across sessions.
 
-### 5.4 OPEN — auto-enable HttpService (spike)
+### 5.4 RESOLVED — HttpService cannot be auto-enabled by the plugin
 
-`OPEN` Investigate whether the plugin can set `HttpService.HttpEnabled = true`
-from plugin context on first run (it works from the command bar; needs the same
-kind of quick Studio spike as the loadstring check). If yes, the user does *zero*
-Studio configuration. If no, document "enable HttpService" as the one manual
-Studio toggle.
+✅ Tested 2026-06-24: a plugin **cannot** set `HttpService.HttpEnabled`. It works
+from the Command Bar (which runs at a higher security identity), but not from
+plugin security context. So enabling HttpService stays a **one-time manual step**.
+The plugin detects the off state on Start, shows a clear status ("HTTP service
+disabled - enable it in Experience settings → Security → Allow HTTP Requests"), and
+connects automatically once the user enables it.
 
 ## 6. Errors surfaced to Claude
 

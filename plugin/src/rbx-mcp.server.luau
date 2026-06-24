@@ -14,7 +14,7 @@
 
 local HttpService = game:GetService("HttpService")
 
-local PLUGIN_VERSION = "0.1.0"
+local PLUGIN_VERSION = "0.2.0"
 local HOLD_MS = 25000 -- long-poll hold; keep under HttpService's request timeout
 local MAX_RESULT_BYTES = 900 * 1024 -- stay under the server's 1 MiB default
 local SETTING_PREFIX = "rbx-mcp."
@@ -279,6 +279,8 @@ function Ui.build(onToggle)
 
 	statusLabel = makeLabel("Disconnected", root, 1)
 	statusLabel.TextSize = 14
+	statusLabel.TextWrapped = true
+	statusLabel.AutomaticSize = Enum.AutomaticSize.Y
 
 	local cfg = Config.load()
 	makeField("Host", "host", cfg.host, 10, root)
@@ -347,8 +349,10 @@ function Loop.start()
 	task.spawn(function()
 		local backoff = 0.5
 		while active do
+			-- Plugins can't enable HttpService themselves (it needs a higher security
+			-- identity than plugin context); guide the user — it recovers automatically.
 			if not HttpService.HttpEnabled then
-				Ui.setStatus("HttpService disabled — enable it in Game Settings", "error")
+				Ui.setStatus("HTTP service disabled - enable it in Experience settings → Security → Allow HTTP Requests", "error")
 				task.wait(2)
 				continue
 			end
