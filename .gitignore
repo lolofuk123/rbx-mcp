@@ -1,0 +1,13 @@
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+
+# Generated plugin bundle (canonical source lives in plugin/src/)
+server/assets/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
