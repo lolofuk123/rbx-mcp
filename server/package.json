@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "Bridge that lets an AI agent execute Lua live inside Roblox Studio over MCP.",
+  "description": "Execute Lua live inside Roblox Studio from any MCP client (Claude, Copilot, Cursor, ...) — write, run, read results, iterate.",
   "type": "module",
   "bin": {
     "rbx-mcp": "dist/index.js"

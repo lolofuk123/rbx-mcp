@@ -10,8 +10,13 @@ The Node/TS package published to npm as **`@lolofuk123/rbx-mcp`**. One process, 
 On startup it also **auto-installs** the bundled Studio plugin into the local
 Plugins folder. See the repo [`README`](../README.md) for the big picture.
 
-## Use with Claude
+## Use with any MCP client
 
+rbx-mcp is **model-agnostic** — use Claude, GPT, or whatever model your host
+drives. The host just needs to support a local **stdio** MCP server on the same
+machine as Studio. The config differs slightly per host:
+
+**Claude Desktop / Claude Code** — key `mcpServers`:
 ```json
 {
   "mcpServers": {
@@ -19,9 +24,25 @@ Plugins folder. See the repo [`README`](../README.md) for the big picture.
   }
 }
 ```
+- Claude Desktop → `%APPDATA%\Claude\claude_desktop_config.json` (Windows) / `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
+- Claude Code → `.mcp.json` at the project root, or `claude mcp add`
 
-Claude launches the process; you never run a `start` command. Then start/restart
-Studio so it loads the auto-installed plugin.
+**VS Code / GitHub Copilot** (Agent mode) — different key (`servers`) and `type`;
+file `.vscode/mcp.json` (or Command Palette → **MCP: Add Server**):
+```json
+{
+  "servers": {
+    "rbx-mcp": { "type": "stdio", "command": "npx", "args": ["-y", "@lolofuk123/rbx-mcp"] }
+  }
+}
+```
+MCP tools only work in Copilot **Agent mode** (not Ask/Edit). On Windows you may
+need the `cmd /c` wrapper — see Troubleshooting below. (Cursor / Windsurf use the
+Claude-style `mcpServers` shape, e.g. `.cursor/mcp.json`.)
+
+The host launches the process — you never run a `start` command. Then start/restart
+Studio so it loads the auto-installed plugin, open the **rbx-mcp** panel, and click
+**Start**.
 
 ## Environment variables
 
