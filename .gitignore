@@ -8,6 +8,9 @@ dist/
 # Generated plugin bundle (canonical source lives in plugin/src/)
 server/assets/
 
+# Local Claude Code MCP config (machine-specific absolute path)
+.mcp.json
+
 # Editor / OS
 .DS_Store
 Thumbs.db

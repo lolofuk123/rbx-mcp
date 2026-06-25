@@ -3,11 +3,13 @@
 All notable changes to this project are documented here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/); versions follow semver.
 
-## [Unreleased]
+## [0.2.0] - 2026-06-24
 
-### Added — initial implementation (v0.1.0, pre-release)
+First published release (npm `@lolofuk123/rbx-mcp`).
 
-- **Server (`rbx-mcp`, Node/TS):**
+### Added
+
+- **Server (npm `@lolofuk123/rbx-mcp`, Node/TS):**
   - localhost HTTP bridge (`/v1/poll`, `/v1/result`, `/v1/health`) with
     long-polling, single-in-flight execution, command/result correlation, and an
     authoritative command timeout.
@@ -38,4 +40,4 @@ All notable changes to this project are documented here. Format loosely follows
   plugin context (2026-06-23).
 - Built-binary smoke test: end-to-end enqueue → poll → result round-trip.
 
-[Unreleased]: https://github.com/OWNER/rbx-mcp/commits/main
+[0.2.0]: https://github.com/lolofuk123/rbx-mcp/releases/tag/v0.2.0

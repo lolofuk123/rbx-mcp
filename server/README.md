@@ -1,6 +1,6 @@
 # rbx-mcp (server)
 
-The Node/TS package published to npm as **`rbx-mcp`**. One process, two faces:
+The Node/TS package published to npm as **`@lolofuk123/rbx-mcp`**. One process, two faces:
 
 - **MCP side** (stdio) — exposes `execute_lua`, `read_studio_state`, `get_errors`
   to Claude.
@@ -15,7 +15,7 @@ Plugins folder. See the repo [`README`](../README.md) for the big picture.
 ```json
 {
   "mcpServers": {
-    "rbx-mcp": { "command": "npx", "args": ["-y", "rbx-mcp"] }
+    "rbx-mcp": { "command": "npx", "args": ["-y", "@lolofuk123/rbx-mcp"] }
   }
 }
 ```

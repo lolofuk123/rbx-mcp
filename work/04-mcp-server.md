@@ -160,7 +160,7 @@ The user-facing setup is **one config block** plus an automatic plugin install.
 ```json
 {
   "mcpServers": {
-    "rbx-mcp": { "command": "npx", "args": ["-y", "rbx-mcp"] }
+    "rbx-mcp": { "command": "npx", "args": ["-y", "@lolofuk123/rbx-mcp"] }
   }
 }
 ```
@@ -172,7 +172,7 @@ With optional env (token/port) when not using defaults:
   "mcpServers": {
     "rbx-mcp": {
       "command": "npx",
-      "args": ["-y", "rbx-mcp"],
+      "args": ["-y", "@lolofuk123/rbx-mcp"],
       "env": { "RBXMCP_PORT": "30700", "RBXMCP_TOKEN": "shared-secret" }
     }
   }

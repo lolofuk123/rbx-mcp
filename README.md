@@ -30,21 +30,49 @@ plugin/   single-file Studio plugin: src/rbx-mcp.server.luau (no build step)
 work/     specs + implementation plan
 ```
 
-## Setup (target experience)
+## Setup
 
-1. Add the MCP server to Claude's config:
-   ```json
-   {
-     "mcpServers": {
-       "rbx-mcp": { "command": "npx", "args": ["-y", "rbx-mcp"] }
-     }
-   }
-   ```
-2. Start/restart Roblox Studio. On first launch the server auto-installs the
-   plugin into your local Plugins folder; Studio picks it up on restart.
+**Prerequisites:** [Node.js](https://nodejs.org) ≥ 20, Roblox Studio, and an
+MCP-capable AI host (see below). rbx-mcp is **model-agnostic** — bring Claude,
+GPT, or any model your host drives; the server only exposes MCP tools, the model
+just calls them. The host must run a **local stdio** server on the **same
+machine as Studio** (the plugin talks to `localhost`).
 
-That's it — open Studio + Claude and the loop works. See
-[`server/README.md`](server/README.md) for env vars and manual install.
+### 1. Add the MCP server to your AI host
+
+**Claude Desktop / Claude Code** — top-level key `mcpServers`:
+```json
+{
+  "mcpServers": {
+    "rbx-mcp": { "command": "npx", "args": ["-y", "@lolofuk123/rbx-mcp"] }
+  }
+}
+```
+- **Claude Desktop:** `%APPDATA%\Claude\claude_desktop_config.json` (Windows) /
+  `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS).
+- **Claude Code:** `.mcp.json` at the project root, or `claude mcp add rbx-mcp -- npx -y @lolofuk123/rbx-mcp`.
+
+**VS Code / GitHub Copilot** (agent mode) — note the different key (`servers`) and
+`type`. File `.vscode/mcp.json` (or Command Palette → **MCP: Add Server**):
+```json
+{
+  "servers": {
+    "rbx-mcp": { "type": "stdio", "command": "npx", "args": ["-y", "@lolofuk123/rbx-mcp"] }
+  }
+}
+```
+(Cursor / Windsurf are similar — e.g. `.cursor/mcp.json`, same `mcpServers` shape as Claude.)
+
+### 2. Open Roblox Studio
+
+On first launch the server **auto-installs the plugin** into your local Plugins
+folder; Studio loads it on (re)start. Then open the **rbx-mcp** panel → click
+**Start**. If HttpService is off, the panel tells you exactly where to enable it
+(Experience settings → Security → Allow HTTP Requests); it connects automatically
+once you do.
+
+That's it. See [`server/README.md`](server/README.md) for env vars, an optional
+auth token, and manual plugin install.
 
 ## Development
 

@@ -1,6 +1,9 @@
 {
-  "name": "rbx-mcp",
-  "version": "0.1.0",
+  "name": "@lolofuk123/rbx-mcp",
+  "version": "0.2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Bridge that lets an AI agent execute Lua live inside Roblox Studio over MCP.",
   "type": "module",
   "bin": {
