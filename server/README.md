@@ -76,4 +76,8 @@ into the local Plugins folder and restart Studio. See
 - **Plugin not connected** — Studio open? plugin enabled + **Start**ed? HttpService
   allowed? Host/Port/Token match the server?
 - **Port in use** — set `RBXMCP_PORT` (and the plugin's Port field) to a free port.
+- **VS Code / Copilot on Windows: `spawn npx ENOENT`** — Node must be installed and
+  VS Code fully restarted (it caches PATH at launch). On Windows, set the server
+  command to `cmd` with args `["/c","npx","-y","@lolofuk123/rbx-mcp"]` (or
+  `npx.cmd`). MCP tools only work in Copilot **Agent mode**.
 - **Linux** — there's no standard Studio Plugins path; install manually.

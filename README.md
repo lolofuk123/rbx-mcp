@@ -74,6 +74,35 @@ once you do.
 That's it. See [`server/README.md`](server/README.md) for env vars, an optional
 auth token, and manual plugin install.
 
+## Troubleshooting
+
+**VS Code / Copilot (Windows):**
+- **MCP tools don't appear / no "Start" shows up** — MCP tools only work in
+  Copilot **Agent mode** (not Ask/Edit). Start the server via Command Palette →
+  **MCP: List Servers** → `rbx-mcp`, and enable it in the chat's 🔧 **Tools** picker.
+- **`node`/`npx` "not recognized" in VS Code's terminal** (but fine in a normal
+  terminal) — VS Code launched with a stale PATH from *before* Node was installed.
+  **Fully quit and reopen VS Code** (reboot if it persists) so it picks up Node.
+- **`spawn npx ENOENT`** when starting the server — on Windows `npx` is actually
+  `npx.cmd`, which VS Code's direct spawn can miss. Wrap it in `cmd`:
+  ```json
+  {
+    "servers": {
+      "rbx-mcp": { "type": "stdio", "command": "cmd", "args": ["/c", "npx", "-y", "@lolofuk123/rbx-mcp"] }
+    }
+  }
+  ```
+  (or set `"command": "npx.cmd"`).
+
+**Roblox Studio:**
+- **No rbx-mcp toolbar button after install** — fully restart Studio; it only
+  scans the Plugins folder at launch. (The installed file must be `.lua`, which
+  the auto-installer handles.)
+- **Stuck on "HTTP service disabled"** — enable it (Experience settings → Security
+  → Allow HTTP Requests); the plugin connects automatically once it's on.
+- **`pluginConnected: false` in `/v1/health`** — open the rbx-mcp panel and click
+  **Start**; check Host/Port (and Token, if set) match the server.
+
 ## Development
 
 ```bash
