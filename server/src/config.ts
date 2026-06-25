@@ -1,4 +1,17 @@
-export const VERSION = "0.1.0";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+/** Read the package version from package.json so /health never reports a stale, hardcoded value. */
+function readPkgVersion(): string {
+  try {
+    const pkgUrl = new URL("../package.json", import.meta.url);
+    return (JSON.parse(readFileSync(fileURLToPath(pkgUrl), "utf8")) as { version?: string }).version ?? "0.0.0";
+  } catch {
+    return "0.0.0";
+  }
+}
+
+export const VERSION = readPkgVersion();
 
 export type LogLevel = "error" | "warn" | "info" | "debug";
 const LOG_LEVELS: readonly LogLevel[] = ["error", "warn", "info", "debug"];

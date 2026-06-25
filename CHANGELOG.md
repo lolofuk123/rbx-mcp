@@ -3,6 +3,13 @@
 All notable changes to this project are documented here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/); versions follow semver.
 
+## [0.2.1] - 2026-06-25
+
+### Fixed
+
+- `/v1/health` `bridgeVersion` now reflects the real package version (read from
+  `package.json` at runtime) instead of a stale hardcoded `0.1.0`.
+
 ## [0.2.0] - 2026-06-24
 
 First published release (npm `@lolofuk123/rbx-mcp`).
@@ -40,4 +47,5 @@ First published release (npm `@lolofuk123/rbx-mcp`).
   plugin context (2026-06-23).
 - Built-binary smoke test: end-to-end enqueue → poll → result round-trip.
 
+[0.2.1]: https://github.com/lolofuk123/rbx-mcp/releases/tag/v0.2.1
 [0.2.0]: https://github.com/lolofuk123/rbx-mcp/releases/tag/v0.2.0
